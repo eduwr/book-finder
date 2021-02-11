@@ -1,4 +1,12 @@
-import React from 'react'
-import { Header } from '../../components'
+import React from "react";
+import { Header, Divider } from "../../components";
+import { YearSection } from "../../components/organisms/YearSection";
 
-export const Home = () => <div><Header/></div>
+export const Home = () => (
+  <>
+    <Header />
+    <Divider />
+    <YearSection />
+    <Divider />
+  </>
+);

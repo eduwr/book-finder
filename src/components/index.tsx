@@ -1,1 +1,2 @@
-export * from './Header'
+export * from "./organisms/Header";
+export * from "./atoms/Divider";

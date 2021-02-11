@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     h1, h2, h3 {
         color: 'black';
     }
+
     button {
         padding: 0;
         border: none;
@@ -24,27 +25,34 @@ export const GlobalStyle = createGlobalStyle`
         transition: opacity 300ms ease;
         transition: transform 100ms linear;
     }
+
     button:active {
         opacity: 1;
         transform: translate(0, 1px)
     }
+
     button:hover{
         opacity: 1;
     }
+
     button:disabled{
         opacity: 1;
     }
+
     button:focus {
         outline:0;
     }
+
     input {
         border: none;
         background: none;
         color: 'black';
     }
+
     input:focus {
         outline: none;
     }
+    
     li {
         text-decoration: dashed;
         margin-left: 32px;
