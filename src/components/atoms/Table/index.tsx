@@ -1,23 +1,27 @@
 import styled from "styled-components";
 
+interface RowProps {
+    background?: "grey" | "lightgrey" | 'white';
+  }
+
 interface CellProps {
   alignment?: "center" | "start" | "right";
-  background?: "grey" | "lightgrey" | 'white';
 }
 
-export const Row = styled.tr``;
+export const Row = styled.tr<RowProps>`
+  background-color: ${({ background }) => background || "grey"};
+
+`;
 
 export const Data = styled.td<CellProps>`
   padding: 0 4px;
   border: 1px solid black;
   text-align: ${({ alignment }) => alignment || "start"};
-  background-color: ${({ background }) => background || "grey"};
 `;
 
 export const Heading = styled.th<CellProps>`
   padding: 16px 4px;
   text-align: ${({ alignment }) => alignment || "start"};
-  background-color: ${({ background }) => background || "grey"};
   border: 1px solid black;
 `;
 

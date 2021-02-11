@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
+import { Row, Heading } from "../../atoms/Table";
 
 export const TableHeader = () => {
-    return (
-        <div>
-            Table Header
-        </div>
-    )
-}
-
+  return (
+    <Row>
+      <Heading>Livro</Heading>
+      <Heading>Autor</Heading>
+      <Heading>Editora</Heading>
+      <Heading>Ano</Heading>
+      <Heading>Ações</Heading>
+    </Row>
+  );
+};
