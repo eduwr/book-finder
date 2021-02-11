@@ -38,17 +38,18 @@ export class BooksApiService {
     }
 
     const {
-      finalYear,
       maxResultCount,
       search,
-      skipCount,
-      sorting,
+      finalYear,
       startYear,
     } = props;
 
-    const maxResults = maxResultCount && maxResultCount > 10 ? maxResultCount : 10
-    const searchSentence = search ? `Busca=${search}` : ''
-    return this.api.get(`/Livros?MaxResultCount=${maxResults}&${searchSentence}`);
+    const finalYearQuery = finalYear ? `&AnoFinal=${finalYear}` : '';
+    const startYearQuery = startYear ? `&AnoInicial=${startYear}` : '';
+    const searchSentence = search ? `&Busca=${search}` : '';
+
+    const maxResults = maxResultCount && maxResultCount > 10 ? maxResultCount : 10;
+    return this.api.get(`/Livros?MaxResultCount=${maxResults}${finalYearQuery}${searchSentence}${startYearQuery}`);
   };
 
   public fetchBookDetails = async ({
