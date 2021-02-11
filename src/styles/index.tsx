@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
     #root {
         min-height: 100vh;
+        position: relative;
     }
 
     h1, h2, h3, p {

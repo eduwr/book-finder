@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import Table, { TableBody } from "../../atoms/Table";
 import { useBooksDispatch, useBooksState } from "../../../hooks";
 import { Book } from "../Book";
@@ -13,18 +13,17 @@ export const BookList = () => {
   const { data, searchParams, loading } = useBooksState();
   useEffect(() => {
     const fetchBooks = async () => {
-
       dispatch({
-        type: BooksActionTypes.TOOGLE_LOADING
-      })
+        type: BooksActionTypes.TOOGLE_LOADING,
+      });
       const response = await BooksApiService.getInstance().fetchBooks(
         searchParams
       );
 
       dispatch({ type: BooksActionTypes.SET_BOOKS, payload: response.data });
       dispatch({
-        type: BooksActionTypes.TOOGLE_LOADING
-      })
+        type: BooksActionTypes.TOOGLE_LOADING,
+      });
     };
     fetchBooks();
   }, [searchParams, dispatch]);
@@ -33,9 +32,10 @@ export const BookList = () => {
     return data ? data.items.slice(-10) : [];
   }, [data]);
 
-
-  if(!loading && books.length === 0) {
-    return <Body>Não foram encontrados livros com os filtros selecionados.</Body>
+  if (!loading && books.length === 0) {
+    return (
+      <Body>Não foram encontrados livros com os filtros selecionados.</Body>
+    );
   }
 
   return (

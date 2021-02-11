@@ -1,18 +1,29 @@
 import React from "react";
-
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Location } from "history";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { Home } from "../pages";
+import { DetailsModal } from "../components/organisms/DetailsModal";
 
-const Router = (): JSX.Element => {
+type LocationState = { background?: Location<{} | null | undefined> };
+
+const RouterSwitch = () => {
+  const location = useLocation<{
+    background?: Location<LocationState>;
+  }>();
+  const background = location.state?.background;
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
+    <>
+      <Switch location={background || location}>
+        <Route path="/" exact component={Home}></Route>
       </Switch>
-    </BrowserRouter>
+      {background && (
+        <Route
+          path="/book/:id"
+          children={DetailsModal}
+        />
+      )}
+    </>
   );
 };
 
-export default Router;
+export default RouterSwitch;
