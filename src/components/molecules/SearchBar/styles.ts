@@ -7,12 +7,6 @@ export const SearchBarContainer = styled.div`
     height: 3rem;
 `;
 
-export const Input = styled.input`
-    flex: 1;
-    font-size: 1rem;
-    margin-left: 8px;
-`;
-
 export const SearchButton = styled.button`
     height: 3rem;
     border: 1px solid black;

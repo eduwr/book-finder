@@ -1,3 +1,11 @@
-import React from 'react';
+import React from "react";
+import {YearSectionContainer} from './styles'
+import { BooksCount } from "../../molecules/BooksCount";
+import { YearFilter } from "../../molecules/YearFilter";
 
-export const YearSection = () => <div><h1>Year section</h1></div>
+export const YearSection = () => (
+  <YearSectionContainer>
+    <YearFilter />
+    <BooksCount />
+  </YearSectionContainer>
+);
