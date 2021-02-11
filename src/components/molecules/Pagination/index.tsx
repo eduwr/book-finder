@@ -2,40 +2,22 @@ import React, { useEffect, useState } from "react";
 import { NavButton } from "../../atoms/NavButton";
 import { PaginationContainer } from "./styles";
 import { useBooksDispatch, useBooksState } from "../../../hooks";
-import { BooksApiService } from "../../../service";
+
 import { BooksActionTypes } from "../../../context/books";
 
 export const Pagination = () => {
   const [arrLength, setArrLength] = useState(10);
-  const { data, searchParams } = useBooksState();
+  const { data } = useBooksState();
   const dispatch = useBooksDispatch();
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await BooksApiService.getInstance().fetchBooks(
-        searchParams
-      );
-
-      console.log(response.data);
-      dispatch({
-        type: BooksActionTypes.SET_BOOKS,
-        payload: response.data,
-      });
-    };
-
-    fetchBooks();
-  }, [arrLength, dispatch, searchParams]);
-
-
-  useEffect(() => {
     dispatch({
-        type: BooksActionTypes.SET_SEARCH_PARAMS,
-        payload: {
-            maxResultCount: arrLength
-        }
-    })
-  }, [arrLength, dispatch])
-
+      type: BooksActionTypes.SET_SEARCH_PARAMS,
+      payload: {
+        maxResultCount: arrLength,
+      },
+    });
+  }, [arrLength, dispatch]);
 
   const count = data?.totalCount || 0;
   const itemPerPage = 10;
@@ -77,6 +59,7 @@ export const Pagination = () => {
           style={{
             backgroundColor: item === currentPage ? "grey" : "transparent",
           }}
+          key={item}
         >
           {item}
         </NavButton>

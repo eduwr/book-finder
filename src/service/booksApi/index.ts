@@ -30,12 +30,13 @@ export class BooksApiService {
     baseURL: "http://biblioteca.supero.com.br/api",
   });
 
-  public fetchBooks = async (
+  public fetchBooks = (
     props: Partial<FetchBooksProps> | undefined
   ): Promise<AxiosResponse<FetchBooksResponse>> => {
-    if (!props) {
-      return await this.api.get("/Livros");
+    if (!props || Object.keys(props!).length === 0) {
+      return this.api.get(`/Livros`);
     }
+
     const {
       finalYear,
       maxResultCount,
@@ -45,7 +46,7 @@ export class BooksApiService {
       startYear,
     } = props;
 
-    return await this.api.get(`/Livros`);
+    return this.api.get(`/Livros?MaxResultCount=${maxResultCount && maxResultCount > 10 ? maxResultCount : 10}`);
   };
 
   public fetchBookDetails = async ({

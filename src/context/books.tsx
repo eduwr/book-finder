@@ -45,7 +45,9 @@ const booksReducer = (state: State, action: BooksActions): State => {
     case BooksActionTypes.SET_SEARCH_PARAMS:
       return {
         ...state,
-        searchParams: action.payload,
+        searchParams: {
+          ...state.searchParams, ...action.payload
+        },
       };
     default:
       throw new Error("Unhandled action type");

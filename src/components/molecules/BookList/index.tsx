@@ -1,31 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Table, { TableBody } from "../../atoms/Table";
 import { useBooksDispatch, useBooksState } from "../../../hooks";
 import { Book } from "../Book";
 import { TableHeader } from "../TableHeader";
 import { BooksApiService } from "../../../service";
 import { BooksActionTypes } from "../../../context/books";
-import Loader from 'react-loader-spinner';
+import Loader from "react-loader-spinner";
 
 export const BookList = () => {
   const dispatch = useBooksDispatch();
-  const { data } = useBooksState();
+  const { data, searchParams } = useBooksState();
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await BooksApiService.getInstance().fetchBooks({});
+      const response = await BooksApiService.getInstance().fetchBooks(
+        searchParams
+      );
 
       dispatch({ type: BooksActionTypes.SET_BOOKS, payload: response.data });
     };
     fetchBooks();
-  }, []);
+  }, [searchParams, dispatch]);
+
+  const books = useMemo(() => {
+    return data ? data.items.slice(-10) : [];
+  }, [data]);
 
   return (
     <>
-      {data ? (
+      {books ? (
         <Table>
           <TableHeader />
           <TableBody>
-            {data.items.map((item, idx) => (
+            {books.map((item, idx) => (
               <Book
                 key={item.id}
                 book={item}
@@ -35,12 +41,7 @@ export const BookList = () => {
           </TableBody>
         </Table>
       ) : (
-        <Loader
-          type="Grid"
-          color="grey"
-          height={100}
-          width={100}
-        />
+        <Loader type="Grid" color="grey" height={100} width={100} />
       )}
     </>
   );
