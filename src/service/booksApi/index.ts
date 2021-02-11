@@ -46,7 +46,9 @@ export class BooksApiService {
       startYear,
     } = props;
 
-    return this.api.get(`/Livros?MaxResultCount=${maxResultCount && maxResultCount > 10 ? maxResultCount : 10}`);
+    const maxResults = maxResultCount && maxResultCount > 10 ? maxResultCount : 10
+    const searchSentence = search ? `Busca=${search}` : ''
+    return this.api.get(`/Livros?MaxResultCount=${maxResults}&${searchSentence}`);
   };
 
   public fetchBookDetails = async ({

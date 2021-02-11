@@ -4,10 +4,11 @@ import { PaginationContainer } from "./styles";
 import { useBooksDispatch, useBooksState } from "../../../hooks";
 
 import { BooksActionTypes } from "../../../context/books";
+import { Body } from "../../atoms/Typography";
 
 export const Pagination = () => {
   const [arrLength, setArrLength] = useState(10);
-  const { data } = useBooksState();
+  const { data, loading } = useBooksState();
   const dispatch = useBooksDispatch();
 
   useEffect(() => {
@@ -41,6 +42,10 @@ export const Pagination = () => {
     return items;
   };
 
+  if (data?.items.length === 0 && !loading) {
+    return <Body>Refaça a sua busca</Body>;
+  }
+
   return (
     <PaginationContainer>
       <NavButton onClick={() => setArrLength(1 * itemPerPage)}>
@@ -53,12 +58,14 @@ export const Pagination = () => {
       >
         {"<"}
       </NavButton>
-      {countButtons().map((item, idx) => (
+      {countButtons().map((item) => (
         <NavButton
           onClick={() => setArrLength(item * itemPerPage)}
           style={{
             backgroundColor: item === currentPage ? "grey" : "transparent",
+            color: 'black'
           }}
+          disabled={item === currentPage}
           key={item}
         >
           {item}

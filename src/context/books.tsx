@@ -8,6 +8,7 @@ import React, { createContext } from "react";
 export enum BooksActionTypes {
   SET_BOOKS = "SET_BOOKS",
   SET_SEARCH_PARAMS = "SET_SEARCH_PARAMS",
+  TOOGLE_LOADING = "TOOGLE_LOADING",
 }
 
 // Declare actions
@@ -19,12 +20,16 @@ type BooksActions =
   | {
       type: BooksActionTypes.SET_SEARCH_PARAMS;
       payload: Partial<FetchBooksProps>;
+    }
+  | {
+      type: BooksActionTypes.TOOGLE_LOADING;
     };
 
 export type Dispatch = (action: BooksActions) => void;
 export type State = {
   data?: FetchBooksResponse;
   searchParams: Partial<FetchBooksProps>;
+  loading: boolean;
 };
 type ProviderProps = { children: React.ReactNode };
 
@@ -46,8 +51,14 @@ const booksReducer = (state: State, action: BooksActions): State => {
       return {
         ...state,
         searchParams: {
-          ...state.searchParams, ...action.payload
+          ...state.searchParams,
+          ...action.payload,
         },
+      };
+      case BooksActionTypes.TOOGLE_LOADING:
+      return {
+        ...state,
+        loading: !state.loading
       };
     default:
       throw new Error("Unhandled action type");
@@ -56,6 +67,7 @@ const booksReducer = (state: State, action: BooksActions): State => {
 
 const initialState: State = {
   searchParams: {},
+  loading: false
 };
 
 export const BooksProvider = ({ children }: ProviderProps): JSX.Element => {
