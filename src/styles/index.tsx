@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, p {
         color: 'black';
     }
 
@@ -21,22 +21,6 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         border: none;
         background: none;
-        opacity: 0.85;
-        transition: opacity 300ms ease;
-        transition: transform 100ms linear;
-    }
-
-    button:active {
-        opacity: 1;
-        transform: translate(0, 1px)
-    }
-
-    button:hover{
-        opacity: 1;
-    }
-
-    button:disabled{
-        opacity: 1;
     }
 
     button:focus {
@@ -51,10 +35,5 @@ export const GlobalStyle = createGlobalStyle`
 
     input:focus {
         outline: none;
-    }
-    
-    li {
-        text-decoration: dashed;
-        margin-left: 32px;
     }
 `;
