@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Table from "../../atoms/Table";
+import Table, { TableBody } from "../../atoms/Table";
 import { useBooksDispatch, useBooksState } from "../../../hooks";
 import { Book } from "../Book";
 import { TableHeader } from "../TableHeader";
 import { BooksApiService } from "../../../service";
 import { BooksActionTypes } from "../../../context/books";
+import Loader from 'react-loader-spinner';
 
 export const BookList = () => {
   const dispatch = useBooksDispatch();
@@ -23,16 +24,23 @@ export const BookList = () => {
       {data ? (
         <Table>
           <TableHeader />
-          {data.items.map((item, idx) => (
-            <Book
-              key={item.id}
-              book={item}
-              background={idx % 2 === 0 ? "lightgrey" : "white"}
-            />
-          ))}
+          <TableBody>
+            {data.items.map((item, idx) => (
+              <Book
+                key={item.id}
+                book={item}
+                background={idx % 2 === 0 ? "lightgrey" : "white"}
+              />
+            ))}
+          </TableBody>
         </Table>
       ) : (
-        <p>Carregando</p>
+        <Loader
+          type="Grid"
+          color="grey"
+          height={100}
+          width={100}
+        />
       )}
     </>
   );
