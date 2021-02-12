@@ -16,7 +16,6 @@ export const Data = styled.td<CellProps>`
   padding: 0 4px;
   border: 1px solid black;
   text-align: ${({ alignment }) => alignment || "start"};
-  max-width: 30vw;
   overflow: hidden;
 `;
 

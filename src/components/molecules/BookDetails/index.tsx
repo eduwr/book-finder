@@ -82,6 +82,7 @@ export const BookDetails = () => {
         <ContentText>Peso: {bookDetails?.peso} g</ContentText>
         <ContentText>Largura: {bookDetails?.largura} cm</ContentText>
         <ContentText>Altura: {bookDetails?.altura} cm</ContentText>
+        <ContentText>Comprimento: {bookDetails?.comprimento} cm</ContentText>
       </ContentWrapper>
     </Card>
   );

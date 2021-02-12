@@ -1,8 +1,9 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import {
   FetchBooksProps,
   FetchBooksResponse,
   BookDetails,
+  CreateBookDto,
 } from "./booksApi.interfaces";
 
 export class BooksApiService {
@@ -56,6 +57,19 @@ export class BooksApiService {
     id: string;
   }): Promise<AxiosResponse<BookDetails>> => {
     return await this.api.get(`Livros/${id}`);
+  };
+
+  public createBook = (
+    dto: CreateBookDto
+  ): Promise<AxiosResponse<FetchBooksResponse>> => {
+    const config: AxiosRequestConfig = {
+      headers: {
+        "accept": "text/plain",
+        "Content-Type": "application/json",
+      }
+    };
+
+    return this.api.post("/Livros", dto, config);
   };
 }
 

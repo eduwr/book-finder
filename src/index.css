@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Comic Neue"),
+    url(./assets/fonts/ComicNeue-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  font-style: bold;
+  font-weight: bold;
+  src: local("Comic Neue"),
+    url(./assets/fonts/ComicNeue-Bold.ttf) format("truetype");
+}

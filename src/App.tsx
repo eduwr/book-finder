@@ -5,6 +5,7 @@ import { GlobalStyle } from "./styles";
 import { BooksProvider } from "./context/books";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css"
 
 const App = (): JSX.Element => {
   return (
