@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Book as BookType } from "../../../service/booksApi/booksApi.interfaces";
 import { Row, Data } from "../../atoms/Table";
 import { BookText } from "./styles";

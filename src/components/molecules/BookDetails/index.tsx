@@ -21,7 +21,7 @@ export const BookDetails = () => {
 
   const [loading, setLoading] = useState(false);
   const [bookDetails, setBookDetails] = useState<BookDetailsInterface>();
-  const [error, setError] = useState(false);
+
   const history = useHistory();
 
   const closeModal = (
@@ -50,9 +50,8 @@ export const BookDetails = () => {
         );
         history.goBack();
       } finally {
-          setLoading(false);
+        setLoading(false);
       }
-
     };
 
     fetchBookDetails();
@@ -61,7 +60,7 @@ export const BookDetails = () => {
   if (loading) {
     return (
       <Card centerAligned>
-        <Loader type="Grid" color="grey" height={100} width={100} />
+        <Loader type="Grid" color="grey" height={20} width={20} />
       </Card>
     );
   }
