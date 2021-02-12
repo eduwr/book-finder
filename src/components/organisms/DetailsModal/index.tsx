@@ -8,9 +8,12 @@ interface Props {
 }
 
 export const DetailsModal = ({ children }: Props) => {
+  const handleClick = () => {
+    console.log("container");
+  };
 
   return (
-    <PageContainer>
+    <PageContainer onClick={handleClick}>
       <BookDetails></BookDetails>
     </PageContainer>
   );

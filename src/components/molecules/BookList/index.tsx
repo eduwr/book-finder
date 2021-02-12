@@ -7,6 +7,7 @@ import { BooksApiService } from "../../../service";
 import { BooksActionTypes } from "../../../context/books";
 import Loader from "react-loader-spinner";
 import { Body } from "../../atoms/Typography";
+import { showError } from "../../../helper/showError";
 
 export const BookList = () => {
   const dispatch = useBooksDispatch();
@@ -16,11 +17,16 @@ export const BookList = () => {
       dispatch({
         type: BooksActionTypes.TOOGLE_LOADING,
       });
-      const response = await BooksApiService.getInstance().fetchBooks(
-        searchParams
-      );
 
-      dispatch({ type: BooksActionTypes.SET_BOOKS, payload: response.data });
+      try {
+        const response = await BooksApiService.getInstance().fetchBooks(
+          searchParams
+        );
+
+        dispatch({ type: BooksActionTypes.SET_BOOKS, payload: response.data });
+      } catch (err) {
+        showError("Não foi possível carregar a lista");
+      }
       dispatch({
         type: BooksActionTypes.TOOGLE_LOADING,
       });

@@ -1,26 +1,15 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import { ReactComponent as SearchIcon } from "../../../assets/icons/search.svg";
 import { SearchBarContainer, SearchButton, InputWrapper } from "./styles";
 import { Input } from "../../atoms/Input";
 import { useBooksDispatch, useBooksState } from "../../../hooks";
 import { BooksActionTypes } from "../../../context/books";
-
+import { showError } from "../../../helper/showError";
 export const SearchBar = () => {
   const dispatch = useBooksDispatch();
   const { searchParams } = useBooksState();
 
   const [search, setSearch] = useState("");
-
-  const showError = (msg: string) =>
-    toast.error(msg, {
-      position: "top-center",
-      autoClose: 2000,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
   const handleSearch = () => {
     const { finalYear, startYear } = searchParams;
@@ -34,7 +23,7 @@ export const SearchBar = () => {
       payload: {
         search,
         startYear,
-        finalYear
+        finalYear,
       },
     });
   };
